@@ -1,0 +1,63 @@
+:where(.css-dev-only-do-not-override-15u76wi).ant-menu-light
+  .ant-menu-submenu-selected
+  > .ant-menu-submenu-title,
+:where(.css-dev-only-do-not-override-15u76wi).ant-menu-light.ant-menu-horizontal
+  > .ant-menu-item-selected {
+  color: red;
+}
+
+.menu-scroll {
+  --sb-track-color: #f2f6fb;
+  --sb-thumb-color: #c7d4cd;
+  --sb-size: 1px;
+
+  scrollbar-color: var(--sb-thumb-color) var(--sb-track-color) !important;
+}
+
+.menu-scroll::-webkit-scrollbar {
+  width: var(--sb-size);
+}
+
+.menu-scroll::-webkit-scrollbar-track {
+  background: var(--sb-track-color);
+  border-radius: 10px;
+}
+
+.menu-scroll::-webkit-scrollbar-thumb {
+  background: var(--sb-thumb-color);
+  border-radius: 10px;
+}
+
+.ant-pro-page-container-children-container-no-header {
+  height: 0;
+  padding: 0;
+}
+
+.menu-ctrl {
+  box-sizing: border-box;
+  margin: 16px auto 0;
+
+  .menu-box {
+    width: 100px;
+    left: 60px;
+    z-index: 999;
+    position: absolute;
+  }
+
+  :where(
+      .css-dev-only-do-not-override-14weq98
+    ).ant-menu-light.ant-menu-horizontal
+    > .ant-menu-item-selected {
+    color: #222653;
+    font-weight: bold;
+  }
+
+  :where(
+      .css-dev-only-do-not-override-14weq98
+    ).ant-menu-light.ant-menu-horizontal
+    > .ant-menu-item-selected::after {
+    border-bottom-color: #222653;
+    border-bottom-width: 4px;
+    border-radius: 4px 4px 0 0;
+  }
+}
