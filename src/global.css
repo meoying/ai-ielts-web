@@ -1,12 +1,5 @@
-@font-face {
-  font-family: HarmonyOS;
-  /* 自定义字体名称 */
-  src: '@/assets/font/HarmonyOS.ttf' format('truetype');
-  /* 字体文件的路径 */
-}
 html {
   --primary-color: #222653;
-  font-family: HarmonyOS !important;
 }
 :where(
     .css-dev-only-do-not-override-paega2
@@ -55,3 +48,4 @@ html {
   ).ant-pro-page-container-children-container {
   padding: 0;
 }
+/*# sourceMappingURL=global.css.map */

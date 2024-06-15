@@ -1,8 +1,10 @@
 import { defineConfig } from '@umijs/max';
 
 export const serverRoutes = [
-  { path: '/', redirect: '/index' },
-  { path: '/index', component: './Index/index' },
+  { path: '/', component: './Writing' },
+  // 用户相关
+  { path: '/user/login', component: './User/Login' },
+  { path: '/user/signup', component: './User/Signup' },
 ];
 
 let BASE_URL = '';
@@ -51,23 +53,13 @@ export default defineConfig({
   request: {
     dataField: 'data',
   },
-  layout: false,
+  layout: {},
   routes: [
-    {
-      path: '/oauth2/wechat/callback',
-      component: './User/WechatCallback',
-      layout: false,
-    },
-    {
-      path: '/oauth2/mock/login',
-      component: './User/MockLogin',
-      layout: false,
-    },
     ...serverRoutes,
   ],
 
   npmClient: 'pnpm',
-  title: '面窝吧',
+  title: 'AI IELTS',
   proxy: {
     '/api': {
       target: BASE_URL,
@@ -81,7 +73,6 @@ export default defineConfig({
     // },
   },
   clickToComponent: {},
-  favicons: ['https://cdn.meoying.com/interview/logo/favicon.png'],
   define: {
     'process.env': process.env,
   },

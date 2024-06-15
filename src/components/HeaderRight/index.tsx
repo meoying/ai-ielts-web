@@ -1,9 +1,8 @@
-import { wechatLoginURL } from '@/services/user/user';
-import { getUserInfo, isLogin, loginOut } from '@/utils';
-import { Result } from '@/utils/axios';
+import { getUserInfo, isLogin, logout } from '@/utils';
 import { UserOutlined } from '@ant-design/icons';
 import { Avatar, Button, Dropdown, Menu, Space } from 'antd';
 import React, { useState } from 'react';
+import {history} from '@umijs/max';
 
 const HeaderRight: React.FC = () => {
   const [visible, setVisible] = useState(false);
@@ -12,10 +11,8 @@ const HeaderRight: React.FC = () => {
   const handleMenuClick = (e: any) => {
     switch (e.key) {
       case 'logout':
-        loginOut();
-        break;
-      case 'creator':
-        window.location.href = '/creator';
+        logout()
+        history.push('/user/login')
         break;
       default:
         break;
@@ -27,53 +24,47 @@ const HeaderRight: React.FC = () => {
     setVisible(visible);
   };
 
-  const menu = () => (
-    <Menu onClick={handleMenuClick}>
-      {(profile?.isCreator || false) && (
-        <Menu.Item key="creator">创作中心</Menu.Item>
-      )}
-      <Menu.Item key="logout">退出登录</Menu.Item>
-    </Menu>
-  );
-
-  const login = () => {
-    wechatLoginURL()
-      .then((res) => res?.data)
-      .then((res: Result<string>) => {
-        if (res?.data) {
-          window.location.href = res?.data;
-        }
-      });
+  const menu = () => {
+    const items = [
+      {
+        key: 'logout',
+        label: '退出登录',
+      }
+    ]
+    return (
+      <Menu onClick={handleMenuClick} items={items}>
+      </Menu>
+    )
   };
 
-  if (isLogin()) {
-    return (
-      <Space>
-        {/* <ThemeSwitch /> */}
-        <Dropdown
-          dropdownRender={menu}
-          trigger={['click']}
-          open={visible}
-          onOpenChange={handleVisibleChange}
-          placement="bottom"
-        >
-          <div
-            className="flex justify-center items-center"
-            style={{ marginRight: 15 }}
-          >
-            <Avatar icon={<UserOutlined />} src={profile?.avatar} />
-          </div>
-        </Dropdown>
-      </Space>
-    );
-  }
+  const login = () => {
+    history.push('/user/login')
+  };
+
 
   return (
     <Space>
-      {/* <ThemeSwitch /> */}
+      {isLogin()?
+      <Dropdown
+      dropdownRender={menu}
+      trigger={['click']}
+      open={visible}
+      onOpenChange={handleVisibleChange}
+      placement="bottom"
+    >
+      <div
+        className="flex justify-center items-center"
+        style={{ marginRight: 15 }}
+      >
+        <Avatar icon={<UserOutlined />} src={profile?.avatar} />
+      </div>
+    </Dropdown>
+      :
       <Button style={{ marginRight: 15 }} onClick={login}>
-        登录
-      </Button>
+      登录
+    </Button>}
+      {/* <ThemeSwitch /> */}
+
     </Space>
   );
 };

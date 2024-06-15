@@ -7,10 +7,11 @@ import {
   isLogin,
   setUserInfo,
 } from '@/utils';
-import type { RequestConfig, RuntimeAntdConfig } from '@umijs/max';
+import type { RequestConfig,  RunTimeLayoutConfig, RuntimeAntdConfig } from '@umijs/max';
 import { history } from '@umijs/max';
 import { theme } from 'antd';
 import './global.less';
+import HeaderRight from '@/components/HeaderRight';
 // import HeaderRight from './components/HeaderRight';
 
 // 运行时配置
@@ -29,50 +30,41 @@ export async function getInitialState(): Promise<{
       setUserInfo(p);
     }
   }
-  return { name: '面窝吧', userInfo: getUserInfo(), theme };
+  return { name: 'AI-IELTS', userInfo: getUserInfo(), theme };
 }
-// export const layout: RunTimeLayoutConfig = ({ initialState }) => {
-//   // console.log("initialState",initialState)
-//   return {
-//     title: '面窝吧',
-//     logo: 'https://cdn.meoying.com/interview/logo/logo.png',
-//     menu: {
-//       locale: false,
-//       // 每当 initialState?.currentUser?.userid 发生修改时重新执行 request
-//       params: {
-//         userid: initialState?.userInfo?.id,
-//       },
 
-//       // request: async (params, defaultMenuData) => {
-//       //   try {
-//       //     const res = await service.LoginController.getMenuList({
-//       //       system_source: 'cat',
-//       //     });
-//       //     const menuData = generateMenu({ childlist: res.list });
-//       //     console.log('menuData.routes-->', menuData.routes);
-//       //     return menuData.routes;
-//       //   } catch (error) {
-//       //     return [];
-//       //   }
-//       // },
-//     },
-//     layout: 'top',
-//     // logout(initialState) {
-//     //   console.log('initialState', initialState);
-//     //   return service.LoginController.logout({ system_source: 'cat' });
-//     // },
-//     rightRender(initialState, setInitialState, runtimeConfig) {
-//       return HeaderRight({});
-//     },
+export const layout: RunTimeLayoutConfig = ({ initialState }) => {
+  // console.log("initialState",initialState)
+  return {
+    title: 'AI-IELTS',
+    // logo: 'https://cdn.meoying.com/interview/logo/logo.png',
+    menu: {
+      locale: false,
+      // 每当 initialState?.currentUser?.userid 发生修改时重新执行 request
+      params: {
+        userid: initialState?.userInfo?.id,
+      },
 
-//     menuRender(props, defaultDom) {
-//       // return rightMenuLayout({ renderDom: defaultDom, data: props });
-//     },
-//   };
-// };
+    },
+    contentStyle: {
+      backgroundColor: '#FFF',
+    },
+    layout: 'top',
+    // logout(initialState) {
+    //   console.log('initialState', initialState);
+    //   return service.LoginController.logout({ system_source: 'cat' });
+    // },
+    rightRender(initialState, setInitialState, runtimeConfig) {
+      return HeaderRight({});
+    },
 
-// const { BASE_URL, BUILD_ENV } = process.env;
-// console.log(BASE_URL, BUILD_ENV);
+    // menuRender(props, defaultDom) {
+      // return rightMenuLayout({ renderDom: defaultDom, data: props });
+    // },
+  };
+};
+
+
 const BASE_URL = '/';
 export const request: RequestConfig = {
   timeout: 50000,
@@ -82,15 +74,6 @@ export const request: RequestConfig = {
 };
 
 export function onRouteChange({ clientRoutes, location }) {
-  const pathname = location.pathname;
-  switch (pathname) {
-    case '/question':
-      history.replace('/question/list');
-      break;
-    case '/case':
-      history.replace('/case/list');
-      break;
-  }
 }
 
 export const antd: RuntimeAntdConfig = (memo) => {
