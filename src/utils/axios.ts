@@ -20,7 +20,6 @@ const instance = axios.create({
 instance.interceptors.response.use(
   (resp) => {
     const status = resp?.status || 500;
-    debugger
     if (status == 401) {
       message.error("请登录!")
       logout()

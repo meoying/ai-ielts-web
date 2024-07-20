@@ -4,6 +4,8 @@ export const serverRoutes = [
   { path: '/', component: './Writing' },
   // 用户相关
   { path: '/user/login', component: './User/Login' },
+  { path: '/mock', component: './Mock' },
+  { path: '/writing', component: './Writing' },
   { path: '/user/signup', component: './User/Signup' },
 ];
 

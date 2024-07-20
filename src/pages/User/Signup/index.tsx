@@ -11,8 +11,9 @@ import {
 } from '@ant-design/pro-components';
 import { Space, Tabs, message, theme } from 'antd';
 import Password from '@/pages/User/components/Password';
-import { emailSignup, signup } from '@/services/user/user';
+import { emailSignup, signup } from '@/services/user';
 import { Result } from '@/utils/axios';
+import { history } from '@umijs/max';
 
 interface Input {
   email: string
@@ -34,10 +35,10 @@ export default () => {
       return
     }
     signup(vals).then(res => {
-      debugger
       const data= res?.data || {}
       if(data?.code == 0) {
-        message.success('注册成功')
+        message.success('注册成功，请登录')
+        history.push('/user/login')
       } else {
         message.error(data?.msg ||'系统错误')
       }

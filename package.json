@@ -7,7 +7,6 @@
     "dev": "cross-env BUILD_ENV=dev BUILD_VERSION=8080 UMI_ENV=dev max dev",
     "fmt": "prettier --log-level warn --cache --write .",
     "format": "prettier --log-level warn --cache --write .",
-    "postinstall": "max setup",
     "prepare": "husky install",
     "prod": "cross-env NODE_ENV=production UMI_ENV=production umi dev",
     "setup": "max setup",
@@ -33,6 +32,7 @@
     "postcss-import": "^16.1.0",
     "postcss-nested": "^6.0.1",
     "quill": "rc",
+    "react-markdown": "^9.0.1",
     "react-router-dom": "^6.22.1",
     "store": "^2.0.12",
     "tailwindcss": "^3.4.3",
@@ -49,7 +49,7 @@
     "prettier": "^3.2.3",
     "prettier-plugin-organize-imports": "^3.2.4",
     "prettier-plugin-packagejson": "^2.4.9",
-    "typescript": "^5.3.3",
-    "tailwindcss": "^3"
+    "tailwindcss": "^3",
+    "typescript": "^5.3.3"
   }
 }

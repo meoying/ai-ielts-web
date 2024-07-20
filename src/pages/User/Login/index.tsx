@@ -17,7 +17,7 @@ import {
 import { Space, Tabs, message, theme } from 'antd';
 import type { CSSProperties } from 'react';
 import { useState } from 'react';
-import { login } from '@/services/user/user';
+import { login } from '@/services/user';
 import { history } from '@umijs/max';
 import { markLogin } from '@/utils';
 
@@ -44,9 +44,15 @@ export default () => {
     switch (loginType) {
       case "account":
         login(vals).then(res => {
-          message.success('登录成功')
-          markLogin()
-          history.push('/')
+          const code = res?.data?.code || 0
+          if(code == 0){
+            message.success('登录成功')
+            markLogin()
+            history.push('/')
+            window.location.reload()
+            return
+          }
+          message.error(res?.data?.msg || '登录失败')
         })
         break
       case "phone":

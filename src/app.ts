@@ -1,5 +1,5 @@
 import { Profile } from '@/models/user';
-import { getProfile } from '@/services/user/user';
+import { getProfile } from '@/services/user';
 import {
   THEME_VALUE,
   getTheme,
